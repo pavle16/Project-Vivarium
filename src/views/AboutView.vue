@@ -6,13 +6,14 @@ const { isLoggedIn } = useAuth()
 
 const STEPS = [
     { icon: 'fa-solid fa-magnifying-glass', title: 'Pronađite biljku', text: 'Pregledajte ponudu ili pretražite biljke po nazivu, opisu, tipu, ciljnoj grupi, datumu proizvodnje, ceni i ocenama.' },
-    { icon: 'fa-solid fa-basket-shopping', title: 'Rezervišite', text: 'Prijavite se i kliknite „Rezerviši“. Biljka se dodaje u vašu korpu rezervacija, gde možete menjati količinu.' },
+    { icon: 'fa-solid fa-basket-shopping', title: 'Rezervišite', text: 'Prijavite se, kliknite „Dodaj u korpu“, a zatim u korpi proverite količine i kliknite „Potvrdi rezervaciju“.' },
     { icon: 'fa-solid fa-truck', title: 'Sačekajte da pristigne', text: 'Kada biljka pristigne, status rezervacije se menja u „pristiglo“.' },
     { icon: 'fa-solid fa-star', title: 'Ocenite biljku', text: 'Biljke koje su pristigle možete oceniti. Vaša ocena pomaže drugim kupcima pri izboru.' },
 ]
 
 const STATUSES = [
-    { label: 'rezervisano', badge: 'text-bg-warning', text: 'Biljka je rezervisana i čeka isporuku. Možete promeniti podatke rezervacije, npr. količinu.' },
+    { label: 'nepotvrđeno', badge: 'text-bg-info', text: 'Biljka je u korpi, ali rezervacija još nije potvrđena. Možete promeniti količinu ili je ukloniti.' },
+    { label: 'rezervisano', badge: 'text-bg-warning', text: 'Biljka je rezervisana i čeka isporuku. Možete promeniti količinu ili otkazati rezervaciju.' },
     { label: 'pristiglo', badge: 'text-bg-success', text: 'Biljka je stigla. Možete je oceniti i ukloniti iz korpe.' },
     { label: 'otkazano', badge: 'text-bg-secondary', text: 'Rezervacija je otkazana i biljka neće biti isporučena.' },
 ]

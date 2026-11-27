@@ -38,12 +38,18 @@ function getStock(stock: number) {
       </div>
       <p class="fs-5 fw-bold mb-2">{{ formatPrice(plant.price, plant.currency) }}</p>
       <p class="card-text clamp-3">{{ plant.description }}</p>
-      <div class="d-flex align-items-center gap-2 mt-auto">
-        <button class="btn btn-primary" type="button" :disabled="plant.stockQuantity <= 0" @click="reserve(plant)">
-          Rezerviši
-        </button>
-        <RouterLink :to="detailsLink" class="btn btn-outline-primary">Detalji</RouterLink>
-        <span class="text-body-secondary small ms-auto">{{ getStock(plant.stockQuantity) }}</span>
+      <!-- Footer: stock on its own line, then the two buttons (never wrapping) -->
+      <div class="mt-auto">
+        <p class="small mb-2" :class="plant.stockQuantity > 0 ? 'text-success' : 'text-danger'">
+          <i :class="plant.stockQuantity > 0 ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-xmark'" class="me-1"></i>{{ getStock(plant.stockQuantity) }}
+        </p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary btn-sm flex-grow-1 text-nowrap" type="button"
+            :disabled="plant.stockQuantity <= 0" @click="reserve(plant)">
+            <i class="fa-solid fa-basket-shopping me-1"></i>Dodaj u korpu
+          </button>
+          <RouterLink :to="detailsLink" class="btn btn-outline-primary btn-sm text-nowrap">Detalji</RouterLink>
+        </div>
       </div>
     </div>
   </div>

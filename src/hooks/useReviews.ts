@@ -1,4 +1,5 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { loadJson, saveJson } from '@/utils/storage'
 
 export interface Review {
     id: string
@@ -10,14 +11,11 @@ export interface Review {
 }
 
 export interface RatingSummary {
-    average: number // 0 when there are no reviews
+    average: number // 0 kad nema recenzija
     count: number
 }
 
-// ---------------------------------------------------------------------------
-// Mock reviews: the API has none, so each plant gets a deterministic set of
-// reviews generated from its id (same reviews on every reload).
-// ---------------------------------------------------------------------------
+
 
 const AUTHORS = [
     'Marija P.', 'Nikola J.', 'Jelena S.', 'Stefan M.', 'Ana K.', 'Milan T.',
@@ -32,7 +30,7 @@ const COMMENTS: Record<number, string[]> = {
     1: ['Stigla je uvela i nije preživela.', 'Stanje pri isporuci je razočaravajuće.'],
 }
 
-// Small seeded PRNG (mulberry32)
+// generator mock ocena recenzija
 function seeded(seed: number) {
     return () => {
         seed |= 0
@@ -50,8 +48,8 @@ function mockReviews(plantId: number): Review[] {
     if (cached) return cached
 
     const rnd = seeded(plantId * 7919)
-    const count = Math.floor(rnd() * 7) // 0–6 reviews
-    const bias = rnd() // some plants are generally liked more than others
+    const count = Math.floor(rnd() * 7) // 0–6 
+    const bias = rnd() 
     const list: Review[] = []
     for (let i = 0; i < count; i++) {
         const roll = rnd() * 0.6 + bias * 0.4
@@ -72,8 +70,9 @@ function mockReviews(plantId: number): Review[] {
     return list
 }
 
-// Reviews written by the user in this session (rating feature)
-const userReviews = ref<Review[]>([])
+
+const userReviews = ref<Review[]>(loadJson('vivarium.reviews', []))
+watch(userReviews, v => saveJson('vivarium.reviews', v), { deep: true })
 
 export function useReviews() {
     function getReviews(plantId: number): Review[] {

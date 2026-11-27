@@ -7,11 +7,12 @@ import PlantDetailView from '../views/PlantDetailView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import CartView from '../views/CartView.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
     title?: string
-    requiresAuth?: boolean // logged-out users are sent to login, then back
+    requiresAuth?: boolean // neprijavljeni korisnici su poslati nia prijavu pa nazad
   }
 }
 
@@ -60,15 +61,22 @@ const router = createRouter({
       component: ProfileView,
       meta: { title: 'Moj profil', requiresAuth: true }
     },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: CartView,
+      meta: { title: 'Korpa', requiresAuth: true }
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) return savedPosition // back/forward keeps position
+    if (savedPosition) return savedPosition // cuva trenutnu poziciju
     if (to.hash) return { el: to.hash, behavior: 'smooth' }
-    if (to.name === from.name && to.name === 'gallery') return false // changing filters: stay put
+    //if (to.name === from.name && to.name === 'gallery') return false  pri menjanju filtera ne pomera se pozicija
     return { top: 0 }
   },
 })
 
+//guard za logina
 router.beforeEach(to => {
   const { isLoggedIn } = useAuth()
   if (to.meta.requiresAuth && !isLoggedIn.value) {
