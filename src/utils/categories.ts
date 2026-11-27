@@ -1,5 +1,4 @@
-// Plant categories as returned by the plants API (category_id / category).
-// Used for icons and for the "favourite plant types" in the user profile.
+// awsome icons po kategrijama iz api-ja
 
 export interface CategoryInfo {
     id: number

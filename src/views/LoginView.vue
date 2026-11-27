@@ -32,7 +32,7 @@ function onSubmit() {
                     <h1 class="h3 mb-4">Prijava</h1>
 
                     <div v-if="route.query.reason === 'reserve'" class="alert alert-info py-2">
-                        Da biste rezervisali biljku, prijavite se ili napravite nalog.
+                        Da biste dodali biljku u korpu i rezervisali je, prijavite se ili napravite nalog.
                     </div>
                     <div v-if="error" class="alert alert-danger py-2">{{ error }}</div>
 

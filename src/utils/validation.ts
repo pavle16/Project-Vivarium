@@ -1,6 +1,6 @@
 import type { ProfileData } from '@/hooks/useAuth'
 
-// Basic checks so the user gets a clear message next to the field.
+// obicne provere podataka pri unosu
 
 export function validateProfile(d: ProfileData): Partial<Record<keyof ProfileData, string>> {
     const e: Partial<Record<keyof ProfileData, string>> = {}

@@ -42,7 +42,7 @@ function scroll(direction: 1 | -1) {
 
 .plant-row-item {
     flex: 0 0 auto;
-    width: 230px;
+    width: 250px;
     scroll-snap-align: start;
 }
 

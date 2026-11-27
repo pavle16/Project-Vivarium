@@ -87,7 +87,7 @@ async function fetchPlants() {
 }
 
 export function usePlants() {
-    // Fetch only once; every caller shares the same refs.
+    // fetchuje samo jednom, ostali koji pozivaju istu funkciju dele isti ref
     if (!loading.value && plants.value.length === 0) fetchPlants()
     return { plants, loading, error, fetchPlants }
 }

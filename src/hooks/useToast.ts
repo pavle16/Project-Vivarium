@@ -1,6 +1,8 @@
 import { ref } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
+// notifikacije dole desno
+
 export type ToastVariant = 'success' | 'info' | 'warning' | 'danger'
 
 export interface Toast {

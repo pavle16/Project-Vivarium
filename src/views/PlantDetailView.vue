@@ -159,13 +159,13 @@ function scrollToReviews() {
 
                             <button class="btn btn-primary btn-lg flex-grow-1" type="button" :disabled="maxQty <= 0"
                                 @click="onReserve">
-                                <i class="fa-solid fa-basket-shopping me-2"></i>Rezerviši
+                                <i class="fa-solid fa-basket-shopping me-2"></i>Dodaj u korpu
                                 <span v-if="quantity > 1" class="fw-normal">· {{ formatPrice(plant.price * quantity, plant.currency) }}</span>
                             </button>
                         </div>
                         <p class="small text-body-secondary mb-0 mt-2">
                             <i class="fa-solid fa-circle-info me-1"></i>
-                            Rezervisane biljke čuvaju se u vašoj korpi rezervacija. Rezervaciju možete menjati dok biljka ne pristigne.
+                            Biljka se dodaje u korpu, a rezervaciju potvrđujete u korpi. Potvrđenu rezervaciju možete menjati dok biljka ne pristigne.
                         </p>
                     </div>
 

@@ -1,6 +1,6 @@
 import { ref, watchEffect } from "vue";
 
-
+// citanje teme iz local storage i postavljanje teme
 
 function currentTheme() {
     return localStorage.getItem('theme')  

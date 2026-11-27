@@ -1,4 +1,4 @@
-// Simulated data storage: keeps prototype data in localStorage between reloads.
+// simulacija baze u local storage-u
 
 export function loadJson<T>(key: string, fallback: T): T {
     const raw = localStorage.getItem(key)
