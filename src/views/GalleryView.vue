@@ -21,8 +21,7 @@ const chips = computed(() => {
     const out: { id: string; label: string; remove: () => void }[] = []
 
     if (f.q) {
-        const where = f.searchIn === 'name' ? ' u nazivu' : f.searchIn === 'desc' ? ' u opisu' : ''
-        out.push({ id: 'q', label: `"${f.q}"${where}`, remove: () => update({ q: null, in: null }) })
+        out.push({ id: 'q', label: `"${f.q}"`, remove: () => update({ q: null }) })
     }
     for (const [key, values] of Object.entries(f.lists) as [ListFilterKey, string[]][]) {
         for (const v of values) {

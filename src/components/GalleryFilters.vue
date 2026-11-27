@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import type { Plant } from '@/hooks/usePlants'
 import { SEASONS } from '@/hooks/useSeason'
-import { LIST_FILTERS, useGalleryFilters, type ListFilterKey, type SearchIn } from '@/hooks/useGalleryFilters'
+import { LIST_FILTERS, useGalleryFilters, type ListFilterKey } from '@/hooks/useGalleryFilters'
 
 const props = defineProps<{ plants: Plant[] }>()
 
@@ -63,10 +63,6 @@ watch(keyword, v => {
     timer = setTimeout(() => update({ q: v.trim() }), 300)
 })
 
-function setSearchIn(value: SearchIn) {
-    update({ in: value })
-}
-
 // ----- Price (committed on change/blur, not on every keystroke) -----
 const priceMin = ref<string>(filters.value.priceMin?.toString() ?? '')
 const priceMax = ref<string>(filters.value.priceMax?.toString() ?? '')
@@ -92,14 +88,6 @@ const RATING_OPTIONS = [4, 3, 2]
                 <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                 <input id="filter-keyword" v-model="keyword" type="search" class="form-control"
                     placeholder="npr. monstera, sunce…" />
-            </div>
-            <div class="btn-group btn-group-sm w-100 mt-2" role="group" aria-label="Pretraži u">
-                <template v-for="o in ([['all', 'Sve'], ['name', 'Naziv'], ['desc', 'Opis i nega']] as const)"
-                    :key="o[0]">
-                    <input :id="`search-in-${o[0]}`" type="radio" class="btn-check" name="search-in"
-                        :checked="filters.searchIn === o[0]" @change="setSearchIn(o[0])" />
-                    <label class="btn btn-outline-primary" :for="`search-in-${o[0]}`">{{ o[1] }}</label>
-                </template>
             </div>
         </div>
 

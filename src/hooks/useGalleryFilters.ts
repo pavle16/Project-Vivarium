@@ -3,10 +3,7 @@ import { useRoute, useRouter, type LocationQuery } from 'vue-router'
 import type { Plant } from './usePlants'
 import { useReviews } from './useReviews'
 
-// All gallery filter state lives in the URL query, so filters survive reloads,
-// work with back/forward, and can be linked to (e.g. from the home page).
-
-export type SearchIn = 'all' | 'name' | 'desc'
+// filteri se cuvaju u URL da bi ostali nakon refresha
 
 export const SORT_OPTIONS = [
     { value: 'name-asc', label: 'Naziv: A → Ž' },
@@ -22,7 +19,7 @@ export const SORT_OPTIONS = [
 export type SortValue = (typeof SORT_OPTIONS)[number]['value']
 export const DEFAULT_SORT: SortValue = 'name-asc'
 
-// Multi-select filters: query key -> how to read the value from a plant
+// multi select filteri
 export const LIST_FILTERS = {
     category: (p: Plant) => String(p.categoryId),
     type: (p: Plant) => p.plantType,
@@ -35,13 +32,16 @@ export const LIST_FILTERS = {
 
 export type ListFilterKey = keyof typeof LIST_FILTERS
 
-const FILTER_KEYS = ['q', 'in', ...Object.keys(LIST_FILTERS), 'from', 'to', 'pmin', 'pmax', 'rating'] as const
+const FILTER_KEYS = ['q',...Object.keys(LIST_FILTERS), 'from', 'to', 'pmin', 'pmax', 'rating'] as const
 
+
+// string sort
 function str(query: LocationQuery, key: string): string {
     const v = query[key]
     return typeof v === 'string' ? v : ''
 }
 
+// number sort
 function num(query: LocationQuery, key: string): number | null {
     const s = str(query, key)
     const n = Number(s)
@@ -60,11 +60,9 @@ export function useGalleryFilters() {
 
     const filters = computed(() => {
         const q = route.query
-        const searchIn = str(q, 'in')
         const sort = str(q, 'sort')
         return {
             q: str(q, 'q').trim(),
-            searchIn: (['name', 'desc'].includes(searchIn) ? searchIn : 'all') as SearchIn,
             lists: Object.fromEntries(
                 Object.keys(LIST_FILTERS).map(k => [k, list(q, k)])
             ) as Record<ListFilterKey, string[]>,
@@ -77,8 +75,7 @@ export function useGalleryFilters() {
         }
     })
 
-    // Patch the query; empty values are removed. replace() so tweaking filters
-    // doesn't flood the browser history.
+    // patchovanje querry-ja prazne vrednosti su uklonjene
     function update(patch: Record<string, string | number | null | undefined>) {
         const next: Record<string, string> = {}
         for (const [k, v] of Object.entries(route.query)) {
@@ -89,10 +86,10 @@ export function useGalleryFilters() {
             else next[k] = String(v)
         }
         if (next.sort === DEFAULT_SORT) delete next.sort
-        if (next.in === 'all') delete next.in
         router.replace({ name: 'gallery', query: next })
     }
 
+    // checkbox klik
     function toggle(key: ListFilterKey, value: string) {
         const current = filters.value.lists[key]
         const next = current.includes(value) ? current.filter(v => v !== value) : [...current, value]
@@ -103,7 +100,7 @@ export function useGalleryFilters() {
         update({ [key]: filters.value.lists[key].filter(v => v !== value).join(',') })
     }
 
-    // Clears every filter but keeps the chosen sort
+    // cisti filtere, ne menja sort
     function clearAll() {
         update(Object.fromEntries(FILTER_KEYS.map(k => [k, null])))
     }
@@ -123,12 +120,10 @@ export function useGalleryFilters() {
 
         const result = plants.filter(p => {
             if (q) {
-                const fields =
-                    f.searchIn === 'name' ? [p.name, p.latinName]
-                    : f.searchIn === 'desc' ? [p.description, p.plantingInstructions, p.careInstructions]
-                    : [p.name, p.latinName, p.description, p.plantingInstructions, p.careInstructions]
+                const fields = [p.name, p.latinName, p.description, p.plantingInstructions, p.careInstructions]
                 if (!fields.some(x => x?.toLowerCase().includes(q))) return false
             }
+            // prolazi kroz listu filtera 
             for (const [key, read] of Object.entries(LIST_FILTERS)) {
                 const selected = f.lists[key as ListFilterKey]
                 if (selected.length && !selected.includes(read(p))) return false
