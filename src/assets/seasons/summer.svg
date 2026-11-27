@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6cc3e0"/>
+      <stop offset=".75" stop-color="#ffe9a8"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#23401f" stop-opacity=".92"/>
+      <stop offset=".42" stop-color="#23401f" stop-opacity=".6"/>
+      <stop offset=".72" stop-color="#23401f" stop-opacity="0"/>
+    </linearGradient>
+    <g id="sunflower">
+      <g fill="#ffc300">
+        <ellipse cx="0" cy="-24" rx="7" ry="15"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(26)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(51)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(77)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(103)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(129)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(154)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(180)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(206)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(231)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(257)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(283)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(309)"/>
+        <ellipse cx="0" cy="-24" rx="7" ry="15" transform="rotate(334)"/>
+      </g>
+      <circle r="15" fill="#7a4419"/>
+      <circle r="9" fill="#4e2a10"/>
+    </g>
+    <g id="stem">
+      <path d="M0 0 C-3 -60 3 -110 0 -160" stroke="#3d7a32" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M0 -60 C-28 -62 -40 -82 -38 -92 C-22 -88 -6 -76 0 -60Z" fill="#4f9a3f"/>
+      <path d="M0 -100 C26 -100 38 -118 36 -128 C20 -126 4 -114 0 -100Z" fill="#5aa847"/>
+    </g>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#sky)"/>
+
+  <!-- sun -->
+  <circle cx="760" cy="180" r="120" fill="#fff4c2" opacity=".35"/>
+  <circle cx="760" cy="180" r="88" fill="#ffe680" opacity=".5"/>
+  <circle cx="760" cy="180" r="62" fill="#ffd23f"/>
+
+  <!-- hills and fields -->
+  <path d="M0 250 C220 215 420 250 620 232 C820 214 1000 240 1200 220 L1200 420 L0 420Z" fill="#a7c957"/>
+  <path d="M0 290 C240 262 460 300 700 282 C900 268 1060 290 1200 272 L1200 420 L0 420Z" fill="#e9c46a"/>
+  <g stroke="#d4a947" stroke-width="3" fill="none" opacity=".8">
+    <path d="M520 300 C700 286 900 290 1200 284"/>
+    <path d="M440 320 C680 306 900 310 1200 302"/>
+    <path d="M360 342 C640 328 900 330 1200 322"/>
+  </g>
+  <path d="M0 360 C260 332 520 356 760 346 C960 338 1080 352 1200 342 L1200 420 L0 420Z" fill="#6a994e"/>
+
+  <!-- sunflowers -->
+  <use href="#stem" transform="translate(800 420) scale(.8)"/>
+  <use href="#sunflower" transform="translate(800 292) scale(.8)"/>
+  <use href="#stem" transform="translate(870 420) scale(1.05)"/>
+  <use href="#sunflower" transform="translate(870 252) scale(1.05)"/>
+  <use href="#stem" transform="translate(945 420) scale(.9)"/>
+  <use href="#sunflower" transform="translate(945 276) scale(.9)"/>
+  <use href="#stem" transform="translate(1020 420) scale(1.2)"/>
+  <use href="#sunflower" transform="translate(1020 228) scale(1.2)"/>
+  <use href="#stem" transform="translate(1095 420) scale(.95)"/>
+  <use href="#sunflower" transform="translate(1095 268) scale(.95)"/>
+  <use href="#stem" transform="translate(1165 420) scale(1.1)"/>
+  <use href="#sunflower" transform="translate(1165 244) scale(1.1)"/>
+
+  <!-- butterflies -->
+  <g fill="#fff" opacity=".9">
+    <path d="M940 190 c-10 -12 -20 -6 -14 4 c-8 4 -4 12 6 6 z M940 190 c10 -12 20 -6 14 4 c8 4 4 12 -6 6 z"/>
+    <path d="M1140 180 c-8 -10 -16 -5 -11 3 c-6 3 -3 10 5 5 z M1140 180 c8 -10 16 -5 11 3 c6 3 3 10 -5 5 z"/>
+  </g>
+
+  <rect width="1200" height="420" fill="url(#shade)"/>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9925a"/>
+      <stop offset=".8" stop-color="#fde2c4"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3a2216" stop-opacity=".92"/>
+      <stop offset=".42" stop-color="#3a2216" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#3a2216" stop-opacity="0"/>
+    </linearGradient>
+    <path id="leaf" d="M0 -12 C8 -7 8 7 0 12 C-8 7 -8 -7 0 -12Z M0 -12 L0 14"/>
+    <g id="tree">
+      <path d="M0 0 C-2 -40 2 -70 0 -100 M0 -62 C14 -74 24 -84 34 -98 M0 -74 C-12 -84 -20 -92 -30 -104" stroke="#5b3a29" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <circle cx="-30" cy="-118" r="34"/><circle cx="10" cy="-140" r="42"/><circle cx="42" cy="-112" r="32"/>
+      <circle cx="0" cy="-102" r="28"/>
+      <circle cx="-8" cy="-150" r="16" fill="#fff" opacity=".14"/>
+    </g>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#sky)"/>
+
+  <!-- low sun -->
+  <circle cx="900" cy="175" r="110" fill="#fff1d6" opacity=".35"/>
+  <circle cx="900" cy="175" r="60" fill="#fff0cc"/>
+
+  <!-- birds -->
+  <g stroke="#7a3e22" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".7">
+    <path d="M700 170 q8 -8 16 0 q8 -8 16 0"/>
+    <path d="M750 150 q6 -6 12 0 q6 -6 12 0"/>
+    <path d="M1150 170 q7 -7 14 0 q7 -7 14 0"/>
+  </g>
+
+  <!-- hills -->
+  <path d="M0 255 C200 214 400 250 620 228 C820 208 1000 236 1200 210 L1200 420 L0 420Z" fill="#d9a36b"/>
+  <path d="M0 300 C220 268 440 304 680 286 C880 272 1040 296 1200 276 L1200 420 L0 420Z" fill="#bc6c25"/>
+
+  <!-- trees -->
+  <use href="#tree" transform="translate(820 312) scale(.9)" fill="#e9c46a"/>
+  <use href="#tree" transform="translate(960 300) scale(1.25)" fill="#e76f51"/>
+  <use href="#tree" transform="translate(1110 312) scale(1)" fill="#f4a261"/>
+
+  <!-- front ground -->
+  <path d="M0 352 C240 322 500 350 740 338 C950 328 1070 350 1200 334 L1200 420 L0 420Z" fill="#7f4f24"/>
+
+  <!-- pumpkins -->
+  <g>
+    <ellipse cx="880" cy="388" rx="26" ry="19" fill="#e76f51"/>
+    <ellipse cx="880" cy="388" rx="10" ry="19" fill="#f4845f"/>
+    <path d="M880 370 c0 -8 4 -12 8 -14" stroke="#4f6d2a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="1040" cy="396" rx="20" ry="15" fill="#f4a261"/>
+    <ellipse cx="1040" cy="396" rx="7" ry="15" fill="#f7b77e"/>
+    <path d="M1040 382 c0 -6 3 -9 6 -10" stroke="#4f6d2a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- falling leaves -->
+  <g stroke="#7a3e22" stroke-width="1.2">
+    <use href="#leaf" transform="translate(740 210) rotate(30)" fill="#e76f51"/>
+    <use href="#leaf" transform="translate(1180 180) rotate(-40) scale(.9)" fill="#e9c46a"/>
+    <use href="#leaf" transform="translate(860 330) rotate(70) scale(.8)" fill="#f4a261"/>
+    <use href="#leaf" transform="translate(1040 250) rotate(-20) scale(.85)" fill="#e9c46a"/>
+    <use href="#leaf" transform="translate(680 300) rotate(110) scale(.75)" fill="#e9c46a"/>
+    <use href="#leaf" transform="translate(1150 290) rotate(15)" fill="#e76f51"/>
+    <use href="#leaf" transform="translate(790 140) rotate(-60) scale(.7)" fill="#f4a261"/>
+    <use href="#leaf" transform="translate(980 365) rotate(80) scale(.8)" fill="#e9c46a"/>
+  </g>
+
+  <rect width="1200" height="420" fill="url(#shade)"/>
+</svg>

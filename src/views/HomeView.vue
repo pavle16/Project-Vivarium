@@ -12,6 +12,8 @@ const { plants, loading, error, fetchPlants } = usePlants()
 
 const season = currentSeason()
 const yearRound = SEASONS[SEASON_YEAR_ROUND]!
+// banner illustration for the current season, used in the CSS below
+const heroStyle = season.image ? { '--season-img': `url("${season.image}")` } : undefined
 
 const categories = computed(() => {
     const map = new Map<number, { id: number; name: string; count: number }>()
@@ -55,7 +57,8 @@ const recommendedTitle = computed(() =>
 <template>
     <div class="mt-4">
         <!-- Season banner -->
-        <section class="season-hero rounded-4 p-4 p-md-5 mb-4 text-white">
+        <section class="season-hero rounded-4 p-4 p-md-5 mb-4 text-white"
+            :style="heroStyle">
             <div class="d-flex align-items-center gap-2 mb-2 opacity-75">
                 <i :class="season.icon"></i>
                 <span class="text-uppercase small fw-semibold">Trenutna sezona</span>
@@ -132,12 +135,19 @@ const recommendedTitle = computed(() =>
 </template>
 
 <style scoped>
+/* season illustration; the drawing sits on the right, the left side is dark for the text */
 .season-hero {
-    background: linear-gradient(135deg, #3a5a40 0%, #588157 55%, #a3b18a 100%);
+    background-color: #3a5a40;
+    background-image: var(--season-img);
+    background-size: cover;
+    background-position: right bottom;
 }
 
-[data-bs-theme="dark"] .season-hero {
-    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 55%, #40916c 100%);
+/* on phones the text covers the drawing, so darken the whole banner */
+@media (max-width: 767.98px) {
+    .season-hero {
+        background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), var(--season-img);
+    }
 }
 
 .category-scroller {
